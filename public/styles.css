@@ -53,9 +53,11 @@ body {
   color: hsla(260, 2%, 25%, 0.7);
   width: 70%;
   margin-bottom: 20px;
+  outline: none;
 }
-
-
+/* *{
+  outline: 1px solid red;
+} */
 button {
   position: relative; /* Required for pseudo-element positioning */
   padding: 0;
@@ -71,7 +73,7 @@ button {
 button::before { /* Use double colon for pseudo-elements */
   content: ""; /* REQUIRED for pseudo-elements */
   position: absolute;
-  background: #560bad;
+  background: #4e1a8a5e;
   height: 150px;
   width: 200px;
   top: 100%;
@@ -103,4 +105,17 @@ li {
   text-align: left;
   position: relative;
   padding: 0.5rem;
+}
+
+ul{
+  list-style-type: disc;
+}
+.list-items{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+}
+
+.list-items button{
+  padding: 0.25rem 0.5rem;
 }

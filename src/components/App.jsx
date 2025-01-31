@@ -1,4 +1,5 @@
-import React, { useState } from "react"; // Added useState hook
+import React, { useState } from "react";
+import ToDoItem from "./ToDoItem"; // Import the ToDoItem component
 
 function App() {
   // State management
@@ -12,7 +13,7 @@ function App() {
 
   const addItem = () => {
     if (inputText.trim() !== "") { // Prevent empty items
-      setItems(prevItems => [...prevItems, inputText]); // Add new item
+      setItems((prevItems) => [...prevItems, inputText]); // Add new item
       setInputText(""); // Clear input field
     }
   };
@@ -24,27 +25,37 @@ function App() {
     }
   };
 
+  // Function to delete an item
+  const deleteItem = (id) => {
+    setItems((prevItems) => prevItems.filter((item, index) => index !== id));
+  };
+
   return (
     <div className="container">
       <div className="heading">
         <h1>To-Do List</h1>
       </div>
       <div className="form">
-        <input 
-          type="text" 
+        <input
+          type="text"
           value={inputText} // Controlled input
           onChange={handleChange} // Track typing
           onKeyPress={handleKeyPress} // Add on Enter
           placeholder="Add a new task" // Added placeholder
         />
-        <button onClick={addItem}> {/* Added click handler */}
+        <button onClick={addItem}>
           <span>Add</span>
         </button>
       </div>
       <div>
         <ul>
-          {items.map((item, index) => ( // Dynamic list rendering
-            <li key={index}>{item}</li> // Unique key for each item
+          {items.map((item, index) => (
+            <ToDoItem
+              key={index} // Unique key for each item
+              id={index} // Pass the index as an ID
+              text={item} // Pass the item text
+              onDelete={deleteItem} // Pass the delete function
+            />
           ))}
         </ul>
       </div>
